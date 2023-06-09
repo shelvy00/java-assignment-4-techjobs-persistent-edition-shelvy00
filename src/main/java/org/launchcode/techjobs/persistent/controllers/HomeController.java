@@ -59,7 +59,12 @@ public class HomeController {
             model.addAttribute(newJob);
             return "add";
         }
-        employerRepository.findById(employerId);
+        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+        newJob.setSkills(skillObjs);
+
+        jobRepository.save(newJob);
+
+//        employerRepository.findById(employerId);
         return "redirect:";
     }
 
